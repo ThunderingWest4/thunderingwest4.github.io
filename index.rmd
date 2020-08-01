@@ -1,0 +1,43 @@
+---
+title: "Homepage"
+output: 
+  html_document:
+    toc: TRUE
+    toc_float: TRUE
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+<style>
+div.blue pre { background-color:lightblue; }
+div.blue pre.r { background-color:blue; }
+</style>
+
+<div class = "blue">
+
+
+## About
+***
+
+I'm a learning programmer focused on topics like Machine Learning, AI, and a bit of Emulation. I've mainly coded in languages like C#/Java, Python, and Rust so far but I'm starting to learn other languages like C and have experience in Octave/Matlab. 
+
+## Projects
+***
+
+### Completed
+
+I have several completed projects, which you can see (and experiment with!) by clicking on the links below
+
+- [Iris Flower Neural Network](thunderingwest4.github.io/irisflower.html)
+
+### In Progress
+
+At the moment, I'm working on a couple of projects: 
+
++ Chip-8 Emulator
++ Useless Box
+
+When they're complete, I'll put them on this website. 
+
+</div>
