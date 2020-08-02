@@ -10,7 +10,6 @@ output:
     html: color.html
     includes: 
       after_body: footer.html
-runtime: shiny
 ---
 
 ```{r setup, include=FALSE}
@@ -353,10 +352,4 @@ def tfnet(iters):
   return test_eval
 ```
 
-```{r, echo=FALSE}
-numericInput("rows", "Enter Number of Iterations and Press Enter to Run: ", 3000, step=500)
-accuracy <- c()
-renderTable({
-  py$tfnet(input$rows)
-})
-```
+
