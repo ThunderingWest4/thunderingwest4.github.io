@@ -27,7 +27,7 @@ I'm a learning programmer focused on topics like Machine Learning, AI, and a bit
 
 I have several completed projects, which you can see (and experiment with!) by clicking on the links below
 
-- [Iris Flower Neural Network](thunderingwest4.github.io/irisflower.html)
+- [Iris Flower Neural Network](/irisflower.html)
 
 ### In Progress
 
