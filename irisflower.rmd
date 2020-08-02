@@ -3,18 +3,33 @@ title: "Iris Flower Neural Network"
 output: 
   html_document:
     toc: TRUE
+    toc_depth: 3
     toc_float: TRUE
+    smooth_scroll: TRUE
+    css: style.css
+    html: color.html
+    includes: 
+      after_body: footer.html
+runtime: shiny
 ---
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 library(reticulate)
+library(shiny)
 ```
-
-```{python nn, include=FALSE}
+```{python, include=FALSE}
 import math
 import random
 import numpy as np
+from datetime import datetime
+import time
+from sklearn import datasets
+import tensorflow as tf
+from tensorflow import keras
+```
+
+```{python nn, include=FALSE}
 #loading this code in at beginning to not lag down the site
 
 class NeuralNetwork():
@@ -131,9 +146,11 @@ class NeuralNetwork():
             else:
                 result="wrong"
             print("Test Number " + str(tests) + ": The Network was " + str(result))
+        totalacc=(correct/total)*100
         print("The Network was " + str((correct/total)*100) + "% Correct")
         for element in DoubleCheck:
-            print(element)        
+            print(element)
+        return totalacc
 
 def sigmoid(x):
     if(type(x) == int or type(x) == float or type(x) == np.float64):
@@ -224,12 +241,122 @@ This dataset can have many uses within data analysis and I decided, as one of my
 
 # Summary of a Neural Network
 A Neural Network is a program designed to mimic how the human brain works. Just think about the process of when you see and identify something - the input layer, or your eyes, takes the information and passes it to the hidden layer, or your brain, which then processes the information and passes the result to the output layer, which is what you identify it as. All the different layers of a Neural Network have "nodes", which are similar to small cells designed to carry information and each node is connected to all the nodes in the next layer. 
+Neural Networks generally use two different subsections of the overall dataset: 
++ A training set, which is used (as in its name describes) for training the network
++ A testing set, which is used to test the accuracy of the network after it was trained
+
 ```{r echo=FALSE, out.width='100%'}
 knitr::include_graphics('images/nnimg.jpeg')
 ```
 
 # The Network Itself
 
+Now that we've briefly gone over what a neural network is and what its dataset is, we can experiment with it!
 
+The driver code itself is hidden but you'll be able to modify how many iterations the network trains which in turn will affect how accurate (or inaccurate) the network will be when it's tested. 
 
+```{python scratchDriver, include=FALSE, echo=TRUE}
+def drive(iters):
+  iters = int(iters)
+  starting_time = datetime.now().strftime("%H:%M:%S")
+  begin = time.process_time()
+  print("Time Started: ", starting_time)
+  iris = datasets.load_iris()
+  irisdat = iris.data
+  #print(irisdat)
+  numTypes = 3
+  #total of 150 different things in the iris dataset
+  #4 attributes
+  #first 50 are setosa, second 50 are versicolour, last 50 are virginica
+  NN = NeuralNetwork()
+  NN.NeuralNetwork(len(irisdat[0]), 1, 5, numTypes)
+  val = []
+  
+  for i in range(len(irisdat)):
+  
+      u = irisdat[i]
+      if(i<=50): 
+          val.append([u, 0])
+      elif(50 < i and i <= 100):
+          val.append([u, 1])
+      elif(100 < i and i <= 150):
+          val.append([u, 2])
+  
+  random.shuffle(val)
+  
+  training = val[0:99]
+  testing = val[100:]
+  NN.train(training, iters, 0.1)
+  #print("Previously seen (training) example progress: ")
+  #NN.test(training)
+  #print("----------------------------------------------")
+  print("New and Never Before Seen (testing) example set: ")
+  acc = NN.test(testing)
+  end_time = time.process_time()
+  
+  now = datetime.now()
+  
+  current_time = now.strftime("%H:%M:%S")
+  print("Time Started: ", starting_time)
+  print("Time Finished: ", current_time)
+  print("Time Elapsed: ", (end_time - begin))
+  print("Learning Rate: " + str(NN.alpha))
+  print("Iterations Trained: " + str(iters))
+  return acc
+```
+```{python, tfdriver, include=FALSE, echo=TRUE}
+#Thanks to https://machinelearningmastery.com/how-to-choose-loss-functions-when-training-deep-learning-neural-networks/
 
+def tfnet(iters):
+  iters = int(iters)
+  iris = datasets.load_iris()
+  irisdat = iris.data
+  #print(irisdat)
+  numTypes = 3
+  #total of 150 different things in the iris dataset
+  #4 attributes
+  #first 50 are setosa, second 50 are versicolour, last 50 are virginica
+  val = []
+
+  for i in range(len(irisdat)):
+      u = irisdat[i]
+      if(i<=50): 
+          val.append([u, [1, 0, 0]])
+      elif(50 < i and i <= 100):
+          val.append([u, [0, 1, 0]])
+      elif(100 < i and i <= 150):
+          val.append([u, [0, 0, 1]])
+
+  random.shuffle(val)
+
+  training = val[0:99]
+  trainX, trainy = np.array([np.array(training[i][0]) for i in range(len(training))]), np.array([np.array(training[i][1]) for i in range(len(training))])
+  testing = val[100:]
+  testX, testy = np.array([np.array(testing[i][0]) for i in range(len(testing))]), np.array([np.array(testing[i][1]) for i in range(len(testing))])
+
+  alpha = 0.1
+
+  model = keras.Sequential([
+
+      keras.layers.Dense(units=5, activation='sigmoid'), 
+      keras.layers.Dense(units=10, activation='sigmoid'),
+      keras.layers.Dense(units=3, activation='sigmoid')
+  ])
+
+  model.compile(loss='binary_crossentropy', optimizer=keras.optimizers.SGD(lr=0.05, momentum=0.9), metrics=['accuracy'])
+  print("----------- about to start fitting model ------------")
+  history = model.fit(trainX, trainy, validation_data=(testX, testy), epochs=3000, verbose=0)
+  print("--------- about to test predictions ------------")
+  test_eval = model.evaluate(testX, testy, verbose=0)
+  print("Accuracy on testing set: " + str(test_eval))
+  print("Accuracy on training set: " + str(model.evaluate(trainX, trainy, verbose=0)))
+  return test_eval
+```
+
+```{r, echo=FALSE}
+numericInput("rows", "Enter Number of Iterations and Press Enter to Run: ", 3000, step=500)
+accuracy <- c()
+renderTable({
+  py$tfnet(input$rows)
+})
+```
