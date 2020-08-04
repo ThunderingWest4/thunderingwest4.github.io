@@ -8,6 +8,7 @@ output:
     css: style.css
     html: color.html
     includes: 
+      in_header: header.html
       after_body: footer.html
 fontsize: 12pt
 ---
@@ -25,9 +26,9 @@ I'm a learning programmer focused on topics like Machine Learning, AI, and a bit
 ***
 ### Completed
 
-I have several completed projects, which you can see (and experiment with!) by clicking on the links below
+I have several completed projects, which you can see (and experiment with!) by hovering over the "Completed Projects" tab in the header menu at the top of the page. 
 
-- [Iris Flower Neural Network](/irisflower.html)
+***
 
 ### In Progress
 
@@ -36,4 +37,6 @@ At the moment, I'm working on a couple of projects:
 + Chip-8 Emulator
 + Useless Box
 
-When they're complete, I'll put them on this website. 
+
+
+When they're complete, I'll put them on this website. For the ones that include more physical components and can't be put on a website, I'll show my code for that project as well as my thought process and design for the final product as well as some images of it. 
