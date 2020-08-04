@@ -7,11 +7,13 @@ output:
     toc_float: TRUE
     smooth_scroll: TRUE
     css: style.css
-    html: color.html
     includes: 
       in_header: header.html
       after_body: footer.html
 ---
+
+# Important Note: 
+The code for the Neural Network is completed but putting it into the website is proving trickier than expected. Please hold tight while I fix the issues. I'm trying to get the code embedded as soon as possible. 
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)

@@ -1,0 +1,15 @@
+---
+title: "Under Construction"
+output: 
+  html_document:
+    toc: TRUE
+    toc_depth: 3
+    toc_float: TRUE
+    css: style.css
+    includes: 
+      in_header: header.html
+      after_body: footer.html
+fontsize: 12pt
+---
+
+This Page is Under Construction. For updates on this page's completion, please refer to the homepage. Thank you!

@@ -6,7 +6,6 @@ output:
     toc_depth: 3
     toc_float: TRUE
     css: style.css
-    html: color.html
     includes: 
       in_header: header.html
       after_body: footer.html
@@ -38,5 +37,8 @@ At the moment, I'm working on a couple of projects:
 + Useless Box
 
 
+When they're complete, I'll put them on this website. For the ones that include more physical components and can't be put on a website, I'll show my code for that project as well as my thought process and design for the final product as well as some images of it.
 
-When they're complete, I'll put them on this website. For the ones that include more physical components and can't be put on a website, I'll show my code for that project as well as my thought process and design for the final product as well as some images of it. 
+## Pages Under Construction
+
+At the moment, the pages for the Chip-8 Emulator and Useless Box are under construction. I have several projects going on right now so as soon as I get them under control and hopefully finish one or two, these pages will start being built. 
