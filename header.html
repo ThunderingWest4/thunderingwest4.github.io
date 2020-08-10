@@ -5,13 +5,12 @@
 <style>
 body {
   margin: 0;
-  font-size: 12pt;
   font-family: 'Times New Roman', Times, serif;
 }
 
 .header {
   background-color: #f1f1f1;
-  padding: 30px;
+  padding: 10px;
   text-align: center;
 }
 
@@ -142,7 +141,7 @@ add <a href="linktohtmlfile"> TabName </a>
 /* makes sure the bar stays at the top of the screen */
 window.onscroll = function() {myFunction()};
 
-var navbar = document.getElementById("navbar");
+var navbar = document.getElementsByClassName("navbar");
 var sticky = navbar.offsetTop;
 
 function myFunction() {
