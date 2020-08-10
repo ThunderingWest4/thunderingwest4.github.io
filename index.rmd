@@ -27,10 +27,7 @@ I'm a learning programmer focused on topics like Machine Learning, AI, and a bit
 
 I have several completed projects, which you can see (and experiment with!) by hovering over the "Completed Projects" tab in the header menu at the top of the page. 
 
-***
-
 ### In Progress
-
 At the moment, I'm working on a couple of projects: 
 
 + Chip-8 Emulator
