@@ -38,4 +38,22 @@ When they're complete, I'll put them on this website. For the ones that include 
 
 ## Pages Under Construction
 
-At the moment, the pages for the Chip-8 Emulator and Useless Box are under construction. I have several projects going on right now so as soon as I get them under control and hopefully finish one or two, these pages will start being built. 
+At the moment, there are several pages on this website that I've added as placeholders of sorts - the tabs are there but it redirects you to an Under Construction page because I haven't had much of a chance to finish building those pages yet. However, I'll have an updated list below of pages that are currently finished, in progress, and not yet started. 
+
+### Finished Pages
+
+Well technically none because I'll always be improving the pages if I find a place to improve them. However, the ones that are probably the most finished and will have minimal revisions are: 
+
++ The Homepage
+
+### In Progress
+
+I'm currently focused on finishing the Iris Flower Neural Network Page
+
+### Not Yet Started
+
+The not yet started pages on the website with just placeholders are: 
+
++ Chip-8 Emulator
++ Hunt The Wumpus
++ Pathfinding Snake
