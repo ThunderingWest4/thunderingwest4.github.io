@@ -123,9 +123,11 @@ class NeuralNetwork():
             else:
                 result="wrong"
             print("Test Number " + str(tests) + ": The Network was " + str(result))
-        print("The Network was " + str((correct/total)*100) + "% Correct")
+        acc = str((correct/total)*100) + "%"
+        print("The Network was {} Correct".format(acc))
         #for element in DoubleCheck:
         #    print(element)        
+        return acc
 
 def sigmoid(x):
     if(type(x) == int or type(x) == float or type(x) == np.float64):

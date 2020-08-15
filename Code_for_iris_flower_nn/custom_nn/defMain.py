@@ -1,7 +1,14 @@
 def run(iters, alpha):
   from datetime import datetime
   import time
-
+  
+  #Ignore the scikit-learn warning about imp vs importlib
+  # import warnings filter
+  from warnings import simplefilter
+  # ignore all future warnings
+  simplefilter(action='ignore', category=DeprecationWarning)
+  
+  
   starting_time = datetime.now().strftime("%H:%M:%S")
   begin = time.process_time()
   #print("Time Started (GMT/UTC-0): ", starting_time)
@@ -41,7 +48,7 @@ def run(iters, alpha):
   #NN.test(training)
   #print("----------------------------------------------")
   print("New and Never Before Seen (testing) example set: ")
-  NN.test(testing)
+  acc = NN.test(testing)
   end_time = time.process_time()
 
   now = datetime.now()
@@ -52,5 +59,6 @@ def run(iters, alpha):
   print("Time Elapsed (Minutes): ", ((end_time - begin)/60))
   print("Learning Rate: " + str(NN.alpha))
   print("Iterations Trained: " + str(iters))
+  return acc
 
 
