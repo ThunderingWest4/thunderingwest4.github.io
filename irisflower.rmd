@@ -12,15 +12,13 @@ output:
       after_body: footer.html
 ---
 
-# Important Note: 
-The code for the Neural Network is completed but putting it into the website is proving trickier than expected. Please hold tight while I fix the issues. I'm trying to get the code embedded as soon as possible. 
-
 # What is the Iris Flower Dataset?
 
 The Iris Flower Dataset, also known as Fisher's Iris set, was introduced by a British scientist named Ronald Fisher in 1936. The Dataset has 50 different samples from each of three different types of flowers - Iris Setosa, Iris Virginica, and Iris Versicolor. Each sample has the sepal length, sepal width, petal length, and petal width of the flower. 
 
-```{r echo=FALSE, out.width='100%'}
+```{r, echo=FALSE, out.width='100%'}
 knitr::include_graphics('images/sepalpetalimage.png')
+library("htmltools")
 ```
 This dataset can have many uses within data analysis and I decided, as one of my first experiments with Neural Networks and Machine Learning, to build a Neural Network capable of classifying the three different species all the way from the ground up. This meant I wasn't allowed to use any libraries like Numpy or Tensorflow or Keras, even for Linear Algebra. The Network has one input layer with 4 nodes, one hidden layer with 5 nodes, and one output layer with 3 nodes and used the Sigmoid function for the activation of nodes. It took a while to get working, and even now the backpropogation isn't fully working (only the hidden to output layer weights are being modified) but the network ended up with a relatively high accuracy rate on the test dataset. 
 
@@ -36,7 +34,12 @@ knitr::include_graphics('images/nnimg.jpeg')
 
 # The Network Itself
 
-Now that we've briefly gone over what a neural network is and what its dataset is, we can experiment with it! You'll be able to adjust the learning rate of the network as well as the number of iterations for which it trains and in turn see how that affects its accuracy. 
+Now that we've briefly gone over what a neural network is and what its dataset is, we can experiment with it! You'll be able to adjust the learning rate of the network as well as the number of iterations for which it trains and in turn see how that affects its accuracy.
+The console will show the past simulations that you've run to allow you to maximize accuracy based on iterations and learning rates. However, even if you use the exact same iterations and learning rate on two different simulations, it's incredibly improbable that they will have the same accuracy because the weights (connections between nodes) are randomly generated each time the program is run and then changed from there based on the backpropogation and error calculations. 
+
+```{r, echo=FALSE}
+htmltools::includeHTML("neuralnetworkembed.html")
+```
 
 
 
