@@ -21,6 +21,9 @@ knitr::opts_chunk$set(echo = TRUE)
 
 I'm a learning programmer focused on topics like Machine Learning, AI, and a bit of Emulation. I've mainly coded in languages like C#/Java, Python, and Rust so far but I'm starting to learn other languages like C and have experience in Octave/Matlab. 
 
+To see the code I've written and compiled for this website, click [here](https://github.com/ThunderingWest4/thunderingwest4.github.io). The reason that some of the HTML files look like gibberish is because I wrote the code/text in R Markdown files and compiled it from there into HTML. 
+To see my github account which has repositories of all of my projects, completed and finished, click [here](https://github.com/ThunderingWest4/). 
+
 ## Projects
 ***
 ### Completed
