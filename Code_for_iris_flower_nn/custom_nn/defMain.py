@@ -13,20 +13,22 @@ def run(iters, alpha):
   begin = time.process_time()
   #print("Time Started (GMT/UTC-0): ", starting_time)
 
-  from sklearn import datasets
+  #from sklearn import datasets
   import network
   import random
   import threading
+  import iris
   
-  iris = datasets.load_iris()
-  irisdat = iris.data
+  #iris = datasets.load_iris()
+  #irisdat = iris.data
+  irisdat = iris.getset()
   #print(irisdat)
   numTypes = 3
   #total of 150 different things in the iris dataset
   #4 attributes
   #first 50 are setosa, second 50 are versicolour, last 50 are virginica
   NN = network.NeuralNetwork()
-  NN.NeuralNetwork(len(irisdat[0]), 1, 5, numTypes)
+  NN.NeuralNetwork(4, 1, 5, numTypes)
   val = []
 
   for i in range(len(irisdat)):

@@ -1,6 +1,7 @@
 import math
 import random
 import numpy as np
+from os import system
 
 class NeuralNetwork():
 
@@ -20,30 +21,53 @@ class NeuralNetwork():
         #5 branches from each node
         #4 input nodes + 1 bias node
         #5 nodes in the hidden layer + 1 bias
-        #3 nodes in output layer, 3 choices
+        #3 nodes in output layer, 3 choices 
         self.HLweights = [[random.random() for k in range(3)] for q in range(6)]
         #range(3) because 3 branches off
+        clear = lambda: system('clear')
+        #blockChr = "█"
+        blockChr = "#"
+        frac = iters / 20
+        prevBlocks = 0
+        clear()
+        print("Progress Bar: [ ------------------ ] 0% | 0 Iterations Complete")
         for i in range(iters):
-            info = []
-            for inepy in data:
-                wah = [self.inputBias]
-                for elem in inepy[0].tolist():
-                    wah.append(elem)
-                tY = [0 for i in range(3)]; tY[inepy[1]] = 1
-                inp = [wah, tY]
-                t1 = self.feedForward(inp[0])
+          blocks = [blockChr for i in range(int((i/frac)))]
+          dash = ["-" for i in range(int(20-int(i/frac)))]
+          info = []
+          inf = "Progress Bar: [ " + "".join(blocks) + "".join(dash) + " ]"
+          if(len(blocks) > prevBlocks):
+            clear()
+            print(inf + " {}% | {} Iterations Complete".format(int(5*len(blocks)), i))
+            prevBlocks=len(blocks)
+            
+          #clear()
+          #print("Training for {} iterations with learning rate {}".format(iters, learningRate))
+          #print(inf)
+          #print(str(round(i/iters, 2)) + "% finished")
+          for inepy in data:
+              wah = [self.inputBias]
+              for elem in inepy[0]:
+                  wah.append(elem)
+              tY = [0 for i in range(3)]; tY[inepy[1]] = 1
+              inp = [wah, tY]
+              t1 = self.feedForward(inp[0])
 
-                HLweighted, output = t1[0], t1[1]
-                info.append([inp, HLweighted, output])
-                #print(output, a[1])
-                self.backprop(HLweighted, output, inp[0], inp[1], len(data))
+              HLweighted, output = t1[0], t1[1]
+              info.append([inp, HLweighted, output])
+              #print(output, a[1])
+              self.backprop(HLweighted, output, inp[0], inp[1], len(data))
             #now all examples have been ff'd
+        #back in method outside of loop
+        clear()
             
     def backprop(self, HLw, pred, x, y, totalEx):
         #print(pred, y)
         error = 2*np.subtract(y, pred)
         #print(error)
         self.totalErr.append(error)
+        
+        #Add in proper backpropogation in future?
 
         
         t = [self.hiddenBias]
