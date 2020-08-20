@@ -48,15 +48,15 @@ At the moment, there are several pages on this website that I've added as placeh
 Well technically none because I'll always be improving the pages if I find a place to improve them. However, the ones that are probably the most finished and will have minimal revisions are: 
 
 + The Homepage
++ The Iris Flower page mostly complete with only a small issue - the Tensorflow network isn't embedded because I can't find any online emulators for it. However, I'll try to fix it in the future. 
 
 ### In Progress
 
-I'm currently focused on finishing the Iris Flower Neural Network Page
++ Hunt the Wumpus
 
 ### Not Yet Started
 
 The not yet started pages on the website with just placeholders are: 
 
 + Chip-8 Emulator
-+ Hunt The Wumpus
 + Pathfinding Snake
