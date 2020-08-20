@@ -1,0 +1,36 @@
+---
+title: "Hunt The Wumpus"
+output: 
+  html_document:
+    toc: TRUE
+    toc_depth: 3
+    toc_float: TRUE
+    css: style.css
+    includes: 
+      in_header: header.html
+      after_body: footer.html
+fontsize: 12pt
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+Hunt the Wumpus is a text-based game originally developed in 1973 by a man named Gregory Yob. The goal is basically to navigate through a cave system with a total of 20 caves in a shape similar to a dodecahedron, where each cave is connected to 3 others, and kill the wumpus. However, the game is entirely text-based meaning that the player operates only on what it can hear or smell and must avoid dangers like bats which drop the player in a random cave and pits, which immediately kill the player if the player falls into one. The Wumpus is not affected by bats or caves and if the you end up walking into the same cave as the wumpus, you die. You have 5 arrows which you can use to shoot the Wumpus but if you miss, the Wumpus flees to another cave. 
+
+
+# What is different in my version?
+Some minor differences in mine are that you don't have a limited number of arrows. Originally, you only had 5 arrows and could possibly find more in other caves. I made it so that instead of having a limited number, you have infinite arrows. In addition, there are some subtle hints as to what caves have pits and bats because if you shoot an arrow into a cave with a pit, you can hear it clatter down a pit and if you shoot into a cave with bats, you can hear them screech. Granted, this allows players to repeatedly shoot arrows into all caves and build their own map and make the game easy but my hope was just to make the game a little less difficult while still maintaining the same goal. 
+
+# What does the map look like? 
+Below is a map of how the caves are organized in Hunt the Wumpus. 
+```{r, echo=FALSE, out.width='100%', fig.align='center'}
+knitr::include_graphics('assets/huntthewumpus/cavemap.png')
+```
+
+
+# My Version of HTW
+
+```{r, echo=FALSE}
+htmltools::includeHTML("assets/huntthewumpus/htwcode.html")
+```
