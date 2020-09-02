@@ -126,18 +126,23 @@
     h1, h2, h3, p {
         padding-left: 80px;
         padding-right: 80px;
+        color: white;
     }
     hr {
         margin-left: 60px;
         margin-right: 60px;
+        color: white;
+    }
+    body, header {
+        background-color: #000040;
     }
     
 
     </style>
     
 
-    <div class="header" style="color: black;">
-        <h1>ThunderingWest4's Website</h1>
+    <div class="header">
+        <h1 style="color: black;">ThunderingWest4's Website</h1>
     </div>
 
     <div class="navbar">
@@ -166,18 +171,16 @@
 
     <script>
     /* makes sure the bar stays at the top of the screen */
-    window.onscroll = function() {myFunction()};
-
-    var navbar = document.getElementsByClassName("navbar");
-    var sticky = navbar.offsetTop;
-
-    function myFunction() {
-    if (window.pageYOffset >= sticky) {
-        navbar.classList.add("sticky")
-    } else {
-        navbar.classList.remove("sticky");
-    }
-    }
+        window.onscroll = function() {myFunction()};
+        var navbar = document.getElementsByClassName("navbar")[0];
+        var sticky = navbar.offsetTop;
+        function myFunction() {
+            if (window.pageYOffset > sticky) {
+                navbar.classList.add("sticky")
+            } else {
+                navbar.classList.remove("sticky");
+            }
+        }
     </script>
 
     <link rel="stylesheet" href="style.css">
