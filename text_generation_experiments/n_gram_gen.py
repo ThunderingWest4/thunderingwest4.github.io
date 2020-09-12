@@ -1,6 +1,7 @@
 import numpy as np
 import re
 import nltk
+import os
 
 #Problems with this model: basically restating different parts of the training text and can jump to different parts and not make enough sense. In addition, can't really do much when it runs into a n-gram that it hasn't seen before
 # In addition, longer grams help the program retain more context and make more sense whereas shorter grams get closer and closer to randomly getting words
@@ -12,17 +13,22 @@ ngrams = {}
 #n = 2 #bigram model
 n = 3 #trigram model
 #n = 4 #quadgram? four-gram? whatever you call it
+filename = "text_generation_experiments/nltk_brown_"+str(n)+"grams.txt"
+if(os.path.exists(filename)):
+    ngrams = eval(open(filename, "r", encoding="utf-8").read())
+else:
+    
+    for i in range(len(corpus)-n):
+        ngram = " ".join(corpus[i:i+n])
+        if not (ngram in ngrams.keys()):
+            ngrams[ngram] = []
+        ngrams[ngram].append(corpus[i+n]) # saying that this n-gram is followed by this specific word
 
-for i in range(len(corpus)-n):
-    ngram = " ".join(corpus[i:i+n])
-    if not (ngram in ngrams.keys()):
-        ngrams[ngram] = []
-    ngrams[ngram].append(corpus[i+n]) # saying that this n-gram is followed by this specific word
+    #keys = list(ngrams.keys())
 
-#keys = list(ngrams.keys())
-
-#for i in range(10):
-#    print(keys[i], ngrams[keys[i]]) # displaying firs 10 ngrams and word
+    #for i in range(10):
+    #    print(keys[i], ngrams[keys[i]]) # displaying firs 10 ngrams and word
+    open(filename, "a").write(str(ngrams))
 
 n_words = 1000
 
