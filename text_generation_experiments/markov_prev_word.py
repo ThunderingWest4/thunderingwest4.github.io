@@ -9,7 +9,7 @@ To run this on your own computer:
 import numpy as np
 import re
 
-data = open('markov_chain_textgen_code/nltk_brown.txt', encoding='utf-8').read()
+data = open('text_generation_experiments/nltk_brown.txt', encoding='utf-8').read()
 corpus = data.split(" ")
 
 #print("Number of words (includes punctuation like periods/exclamation points and quotation marks): " + str(len(corpus)))
