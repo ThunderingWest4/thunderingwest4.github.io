@@ -1,19 +1,19 @@
 import tensorflow as tf
 import numpy as np
 import os
-import pickle
 from tensorflow.keras.models import Sequential
 from tensorflow.keras.layers import Dense, LSTM, Dropout
 from string import punctuation
+import nltk
 
-data = open("text_generation_experiments/nltk_brown.txt", "r").read()
+data = " ".join(nltk.corpus.brown.words('ck10'))
 tf.compat.v1.enable_eager_execution(
     config=None, device_policy=None, execution_mode=None
 )
 # Apparently eager execution was turned off on my machine, turned it on
 seq_len = 100
 batch_size = 512
-epochs = 30
+epochs = 10
 text = data.lower().translate(str.maketrans("", "", punctuation))
 
 n_chars = len(text)
@@ -28,8 +28,8 @@ char_dataset = tf.data.Dataset.from_tensor_slices(encoded_text)
 
 sequences = char_dataset.batch(2*seq_len + 1, drop_remainder=True)
 
-for seq in sequences.take(2):
-    print(''.join([int2char[x] for x in seq.numpy()]))
+#for seq in sequences.take(2):
+#    print(''.join([int2char[x] for x in seq.numpy()]))
 
 def split_sample(sample):
     #Splits a single sample into multiple
@@ -50,7 +50,7 @@ def one_hot(inp, target):
 dataset = dataset.map(one_hot)
 
 #print first two
-for element in dataset.take(2):
+for element in dataset.take(5):
     print("Input:", ''.join([int2char[np.argmax(char_vector)] for char_vector in element[0].numpy()]))
     print("Target:", int2char[np.argmax(element[1].numpy())])
     print("Input shape:", element[0].shape)
@@ -66,12 +66,9 @@ model = Sequential([
     Dense(n_unique, activation="softmax"),
 ])
 
-model.compile(optimizer=tf.keras.optimizers.Adam(learning_rate=0.01), loss="categorical_crossentropy")
+model.compile(optimizer=tf.keras.optimizers.Adam(), loss="categorical_crossentropy")
 
-# make results folder if does not exist yet
-if not os.path.isdir("results"):
-    os.mkdir("results")
 # train the model
 model.fit(shuffleset, steps_per_epoch=(len(encoded_text) - seq_len) // batch_size, epochs=epochs)
 # save the model
-model.save(f"RNNtextgenmodel.h5")
+model.save(f"results/RNNtextgenmodel.h5")
