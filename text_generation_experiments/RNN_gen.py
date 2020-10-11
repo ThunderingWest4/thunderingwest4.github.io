@@ -1,3 +1,10 @@
+"""
+THIS NETWORK WAS TRAINED USING THE KAGGLE NOTEBOOKS
+It's kinda broken right now and I'm busy with other projects so I might come back to this later
+However, it's being put on hold for now. 
+"""
+
+
 # GET DATA
 import requests as rq
 content = rq.get("http://www.gutenberg.org/cache/epub/98/pg98.txt")
